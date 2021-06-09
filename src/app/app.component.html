@@ -1,0 +1,35 @@
+<div class="wrapper ">
+
+  <app-subjects  (selectTheme) = "onSelectTheme($event)"
+                    [themes]="themes"
+                      [selectedTheme]="selectedTheme"
+                        (deleteTheme)="onDeleteTheme($event)"
+                          (updateTheme)="onUpdateTheme($event)"
+                            (addTheme)="onAddTheme($event)" >
+  </app-subjects>
+
+  <div class="main-panel">
+    <div class="content">
+
+      <app-header [totalChapters]="totalChapters"
+                  [totalCompletedChapters]="totalCompletedChapters"
+                  [totalUncompletedChapters]="totalUncompletedChapters">
+      </app-header>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <app-chapters [chapters]="chapters"
+                            (updateChapter)="onUpdateChapter($event)"
+                              (deleteChapter)="onDeleteChapter($event)"
+                                (selectTheme)="onSelectTheme($event)"
+                                  (addChapter)="onAddChapter($event)">
+            </app-chapters>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

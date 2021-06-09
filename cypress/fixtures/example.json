@@ -1,0 +1,30 @@
+[{
+  "id": 1,
+  "title": "ChapterTest1",
+  "isFinished": false,
+  "priority": {
+    "id": 1,
+    "title": "PrioTest1",
+    "color": "#F1128D"
+  },
+  "theme": {
+    "id": 1,
+    "title": "ThemeTest1"
+  },
+  "date": "2020-10-02T20:00:00"
+},
+  {
+    "id": 2,
+    "title": "ChapterTest2",
+    "isFinished": false,
+    "priority": {
+      "id": 1,
+      "title": "PrioTest2",
+      "color": "#F1128D"
+    },
+    "theme": {
+      "id": 1,
+      "title": "ThemeTest2"
+    },
+    "date": "2020-10-02T20:00:00"
+  }]

@@ -1,0 +1,80 @@
+<div class="card">
+
+    <mat-toolbar class="card-header card-header-warning">
+    <h4 class="card-title">Hoofdstukken om af te werken</h4>
+      <div class="text-right col-6">
+        <button mat-raised-button color="accent" (click)="openAddChapterDialog()" data-cy="openChapterEditDialog">Hoofdstuk toevoegen</button>
+      </div>
+    </mat-toolbar>
+
+  <div class="card-body table-responsive" *ngIf=" chapters && chapters.length > 0">
+
+    <table [dataSource]="dataSource" mat-table matSort data-cy="tableIsVisible">
+
+      <!--  color priority  -->
+      <ng-container matColumnDef="color" data-cy="tableColor">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td class="col-color" *matCellDef="let element" [style.background-color]="getPriorityColor(element)"mat-cell></td>
+      </ng-container>
+
+      <!--  id of chapter  -->
+      <ng-container matColumnDef="chapterId">
+        <th *matHeaderCellDef mat-header-cell> No. </th>
+        <td class="col-id" *matCellDef="let index = index" mat-cell> {{ index + 1 }}</td>
+      </ng-container>
+
+      <!--  chapter name  -->
+      <ng-container matColumnDef="chapterName" data-cy="chapterNameColumn" data-cy="nameColumn">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Chapter name </th>
+        <td class="col-name" *matCellDef="let element"
+            [class.completed]="element.isFinished" class="col-title pointer" mat-cell
+            (click)="openEditChapterDialog(element)"
+        >{{ element.title }}</td>
+      </ng-container>
+
+      <!--subject name-->
+      <ng-container matColumnDef="subjectName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Subject </th>
+        <td class="col-sname" *matCellDef="let element"
+            [ngClass]="{'completed': element.isFinished, 'novalue': element.theme == null, 'link': !element.isFinished && element.theme}"
+              (click)="element.theme && onSelectTheme(element.theme)"
+            mat-cell>
+                {{element.theme ? element.theme.title : "-"}}
+        </td>
+      </ng-container>
+
+      <!--subject name-->
+      <ng-container matColumnDef="priorityName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Priority </th>
+        <td class="col-prio" *matCellDef="let element"
+            [ngClass]="{'completed': element.isFinished, 'novalue': element.priority == null}"
+            mat-cell>
+          {{element.priority ? element.priority.title : "-"}}
+        </td>
+      </ng-container>
+
+
+      <!--datum-->
+      <ng-container matColumnDef="date">
+        <th *matHeaderCellDef mat-header-cell> Date </th>
+        <td class="col-date" *matCellDef="let element" [ngClass]="{'completed': element.isFinished, 'novalue': element.date == null}"
+            mat-cell>
+
+          {{element.date | date }}
+
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+
+  </div>
+
+  <div *ngIf="chapters && chapters.length == 0"><p class="not-found">No subjects</p></div>
+
+</div>
+

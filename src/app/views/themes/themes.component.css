@@ -1,0 +1,15 @@
+.pointer{
+  cursor: pointer;
+}
+
+
+.edit-category-icon{
+  color: #dadada;
+}
+
+.edit-category-icon-area{
+  width: 15%;
+  display: inline-block;
+  text-align: left;
+  font-size: 13px;
+}

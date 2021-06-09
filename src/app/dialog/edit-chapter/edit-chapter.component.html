@@ -1,0 +1,84 @@
+<mat-dialog-content >
+  <p mat-dialog-title>{{dialogTitle}}</p>
+  <mat-form-field>
+    <mat-label>Title*</mat-label>
+    <input data-cy="inputWorks"
+      #inputTitle
+        matInput
+          (keydown.enter)="onConfirm()"
+            [(ngModel)]="tmpTitle"
+               >
+    <button
+      (click)="tmpTitle= ''" class="dialog-chapter-title"
+      *ngIf="tmpTitle.trim().length > 0" aria-label="Clear"  mat-button mat-icon-button matSuffix>
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+</mat-dialog-content>
+
+
+<mat-form-field>
+  <mat-label>Select subject</mat-label>
+  <mat-select [(ngModel)]="tmpTheme">
+   <mat-option [value]="null">Geen vak</mat-option>
+    <mat-option *ngFor="let theme of themes" [value]="theme">
+      {{theme.title}}
+    </mat-option>
+  </mat-select>
+
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Select prioriteit</mat-label>
+  <mat-select [(ngModel)]="tmpPriority">
+    <mat-option [value]="null">Geen prioriteit</mat-option>
+     <mat-option *ngFor="let prio of priorities" [value]="prio">
+       {{prio.title}}
+     </mat-option>
+   </mat-select>
+
+ </mat-form-field>
+
+
+ <mat-form-field>
+
+   <input matInput placeholder="Geef de datum op" #inputDate
+           readonly="true"
+             [matDatepicker]="picker"
+               [(ngModel)]="tmpDate"
+                 (click)="picker.open()">
+   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <mat-datepicker #picker></mat-datepicker>
+   <button *ngIf="inputDate.value.trim().length > 0"
+             mat-button matSuffix mat-icon-button aria-label="Clear"
+               (click)="tmpDate = null">
+       <mat-icon>clear</mat-icon>
+   </button>
+ </mat-form-field>
+
+
+ <mat-dialog-actions>
+   <button
+     (click)="onConfirm()" [disabled]="inputTitle.value.trim().length==0"
+     color="primary"
+     mat-raised-button>  <!-- als titel empty is cancel knop is niet actief -->
+    Save
+  </button>
+  <button (click)="onCancel()"
+          mat-raised-button data-cy="cancelInputChapter">Cancel</button>
+
+  <button mat-button
+            *ngIf="!chapter._isFinished && canDelete()"
+              (click)="complete()">Finish chapter</button>
+
+  <button mat-button
+            *ngIf="chapter._isFinished && canDelete()"
+              (click)="activate()">Start chapter</button>
+
+  <button *ngIf="canDelete()"
+            mat-button class="red"
+              (click) = "delete()">Delete chapter</button>
+</mat-dialog-actions>
+
+
+

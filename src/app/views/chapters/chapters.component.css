@@ -1,0 +1,50 @@
+.completed{
+  text-decoration: line-through;
+  color: #bdbdbd;
+}
+
+.novalue{
+  color: #bdbdbd;
+}
+
+.col-color{
+  width: 3%;
+}
+
+.col-id{
+  width: 4%;
+  text-align: center;
+}
+
+.col-name{
+  width: 30%;
+}
+
+.col-title:hover{
+  color: #FFFFFF;
+  background-color: #ff4081;
+  border-radius: 4px;
+}
+
+.col-sname{
+  width: 15%;
+}
+
+.col-prio{
+  width: 15%;
+}
+
+.col-select{
+  width: 5%;
+}
+
+.col-date{
+  width: 10%;
+}
+
+.not-found{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+

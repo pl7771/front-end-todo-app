@@ -1,0 +1,45 @@
+<div class="sidebar" data-color="purple" data-background-color="white">
+  <div class="logo">
+    <mat-toolbar>
+      <span>Lessons</span>
+      <span>
+        <button mat-icon-button (click)="openAddDialog()" data-cy="openThemeDialog">
+          <mat-icon>add</mat-icon>
+        </button>
+    </span>
+    </mat-toolbar>
+  </div>
+
+
+
+  <div class="line"></div>
+
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item category"
+          [class.active]="selectedTheme"
+            (click)="getChaptersByTheme(null)">
+        <a class="nav-link pointer">
+            <span class="all-category-title">Alle vakken</span>
+        </a>
+      </li>
+
+      <li class="nav-item pointer"
+          [class.active]="theme === selectedTheme"
+            *ngFor="let theme of themes; let index = index"
+              (click)="getChaptersByTheme(theme)"
+                (mouseenter)="showEditIcon(index)"
+                  (mouseleave)="showEditIcon(null)">
+            <a class="nav-link" >
+              <p>{{theme.title}}</p>
+              <span class="edit-category-icon-area">
+                <mat-icon *ngIf="indexMouseMove === index"
+                            (click)="$event.stopPropagation(); openEditDialog(theme)"
+                              class="edit-category-icon">edit
+                </mat-icon>
+              </span>
+            </a>
+      </li>
+    </ul>
+  </div>
+</div>
